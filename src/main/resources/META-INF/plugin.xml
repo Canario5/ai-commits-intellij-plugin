@@ -73,6 +73,13 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+        <!-- allows IntelliJ theme support with configurable color overrides -->
+        <color-key name="AICommits.ActiveModelNameHighlight"
+                   default="#2B7ABF"
+                   dark="#6BA4D9"
+                   groupKey="AI Commits Colors"
+                   description="Color for highlighting active AI model names"/>
+
         <projectConfigurable
                 parentId="tools"
                 instance="com.github.blarc.ai.commits.intellij.plugin.settings.AppSettingsConfigurable"
