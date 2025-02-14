@@ -72,7 +72,6 @@ class AppSettingsConfigurable(val project: Project, cs: CoroutineScope) : BoundC
                         llmClientConfigurationComboBox.removeItem(it)
                     }
                 }
-                .disableUpDownActions()
 
             cell(llmClientToolbarDecorator.createPanel())
                 .align(Align.FILL)
