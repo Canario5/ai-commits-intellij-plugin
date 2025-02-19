@@ -36,13 +36,6 @@ class AICommitAction : AnAction(), DumbAware {
         }
     }
 
-    // Helper object to sanitize and format HTML content enduring proper format.
-    object HtmlSanitizer {
-        fun escapeHtml(str: String) = StringUtil.escapeXmlEntities(str)
-        fun toHex(color: Color) = "#${"%06x".format(color.rgb and 0xFFFFFF)}"
-        fun wrapHtml(content: String) = "<html>$content</html>"
-    }
-
     private fun getModelColor(): Color {
         return JBColor.namedColor(
             "AICommits.ActiveModelNameHighlight", // takes values from plugin.xml which allows IntelliJ theme support with configurable color overrides, otherwise fallback to values below
