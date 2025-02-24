@@ -1,7 +1,6 @@
 package com.github.blarc.ai.commits.intellij.plugin
 
 import com.github.blarc.ai.commits.intellij.plugin.AICommitsBundle.message
-import com.intellij.ui.JBColor
 import com.github.blarc.ai.commits.intellij.plugin.colors.AICommitsColors
 import com.github.blarc.ai.commits.intellij.plugin.notifications.Notification
 import com.github.blarc.ai.commits.intellij.plugin.notifications.sendNotification
