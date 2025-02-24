@@ -27,7 +27,7 @@ object AICommitsColors {
         val default = JBColor(lightColor, darkColor)
         val textAttributesKey = TextAttributesKey.createTextAttributesKey("AICommits.$id")
         
-        fun getCurrentColor() = EditorColorsManager.getInstance()
+        private fun getCurrentColor() = EditorColorsManager.getInstance()
             .globalScheme
             .getAttributes(textAttributesKey)
             ?.foregroundColor
