@@ -89,7 +89,7 @@
         />
 
         <colorSettingsPage
-                implementation="com.github.blarc.ai.commits.intellij.plugin.colors.AICommitsColorSettingsPage"
+                implementation="com.github.blarc.ai.commits.intellij.plugin.ui.styles.AICommitsStylesSettingsPage"
         />
 
         <notificationGroup

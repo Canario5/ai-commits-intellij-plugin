@@ -1,10 +1,10 @@
 package com.github.blarc.ai.commits.intellij.plugin
 
 import com.github.blarc.ai.commits.intellij.plugin.AICommitsBundle.message
-import com.github.blarc.ai.commits.intellij.plugin.colors.AICommitsColors
 import com.github.blarc.ai.commits.intellij.plugin.notifications.Notification
 import com.github.blarc.ai.commits.intellij.plugin.notifications.sendNotification
 import com.github.blarc.ai.commits.intellij.plugin.settings.ProjectSettings
+import com.github.blarc.ai.commits.intellij.plugin.ui.styles.AICommitsStyles
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -39,8 +39,8 @@ class AICommitAction : AnAction(), DumbAware {
     }
 
     private fun createTooltipWithHighlightedModel(modelName: String): String {
-        val colorHtml = AICommitsColors.LLM_ACTIVE.toHtml()
-        return message("action.tooltip", modelName, colorHtml)
+        val highlightedName = AICommitsStyles.ACTIVE_MODEL_NAME.wrapWithHtml(modelName)
+        return message("action.tooltip", highlightedName)
     }
 
     override fun actionPerformed(e: AnActionEvent) {
