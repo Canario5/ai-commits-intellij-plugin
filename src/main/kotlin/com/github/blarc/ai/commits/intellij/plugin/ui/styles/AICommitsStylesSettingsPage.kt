@@ -38,22 +38,21 @@ class AICommitsStylesSettingsPage : ColorSettingsPage {
     // Uses a plain text highlighter, because content of the demo is a text and not a code
     override fun getHighlighter() = PlainSyntaxHighlighter()
 
-    //? TODO: Potential improvement - Fetch users' real names of LLMs
-    //! NOTE: Indentation at the start of the string in the demo is visible in the settings
     //? NOTE: Potential improvement - Display users' stored LLM names.
+    // NOTE: IDE Indentation is included to the multiline string, so trimMargin with | to keep formatting.
     override fun getDemoText() =
         """
-${message("styles.demo.styling-limitations")}
-
-Action Tooltip in commit window:
-Generate commit message with <active-model-name>o1 (OpenAI)</active-model-name>
-Generate commit message with <active-model-name>Gemini Flash 2.0 (Google)</active-model-name>
-Generate commit message with <active-model-name>Gemini Flash 2.0 (OpenRouter)</active-model-name>
-
-Error message example:
-<error-message>${message("action.error")}</error-message>
-
-Note: ${message("styles.name.llm-active.desc", "<active-model-name>LLM name</active-model-name>")}
+            |${message("styles.demo.styling-limitations")}
+            |
+            |Action Tooltip in commit window:
+            |Generate commit message with <active-model-name>o1 (OpenAI)</active-model-name>
+            |Generate commit message with <active-model-name>Gemini Flash 2.0 (Google)</active-model-name>
+            |Generate commit message with <active-model-name>Gemini Flash 2.0 (OpenRouter)</active-model-name>
+            |
+            |Error message example:
+            |<error-message>${message("action.error")}</error-message>
+            |
+            |Note: ${message("styles.name.llm-active.desc", "<active-model-name>LLM name</active-model-name>")}
         """.trimMargin()
 
     // Purpose: Maps XML-like tags in the demo text to text attribute keys
