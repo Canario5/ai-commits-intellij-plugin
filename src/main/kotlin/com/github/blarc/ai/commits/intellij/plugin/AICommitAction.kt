@@ -4,6 +4,7 @@ import com.github.blarc.ai.commits.intellij.plugin.AICommitsBundle.message
 import com.github.blarc.ai.commits.intellij.plugin.notifications.Notification
 import com.github.blarc.ai.commits.intellij.plugin.notifications.sendNotification
 import com.github.blarc.ai.commits.intellij.plugin.settings.ProjectSettings
+import com.github.blarc.ai.commits.intellij.plugin.ui.styles.AICommitsStyles
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -13,22 +14,33 @@ import com.intellij.openapi.vcs.VcsDataKeys
 import com.intellij.openapi.vcs.ui.CommitMessage
 import com.intellij.vcs.commit.AbstractCommitWorkflowHandler
 
+/**
+ * Action for generating AI-powered commit messages.
+ * Provides visual feedback for generation states with theme-aware color highlighting for currently active model.
+ */
 class AICommitAction : AnAction(), DumbAware {
-
 
     override fun getActionUpdateThread(): ActionUpdateThread {
         return ActionUpdateThread.EDT
     }
 
     override fun update(e: AnActionEvent) {
-        e.project?.service<ProjectSettings>()?.getActiveLLMClientConfiguration()?.let {
-            if (it.getGenerateCommitMessageJob()?.isActive == true) {
-                e.presentation.icon = Icons.Process.STOP.getThemeBasedIcon()
-            } else {
-                e.presentation.icon = it.getClientIcon()
-                e.presentation.text = message("action.tooltip", it.name)
+        e.project?.service<ProjectSettings>()?.getActiveLLMClientConfiguration()?.let { config ->
+            e.presentation.apply {
+                if (config.getGenerateCommitMessageJob()?.isActive == true) {
+                    icon = Icons.Process.STOP.getThemeBasedIcon()
+                    text = message("action.tooltip.is-active")
+                } else {
+                    icon = config.getClientIcon()
+                    text = createTooltipWithHighlightedModel(config.name)
+                }
             }
         }
+    }
+
+    private fun createTooltipWithHighlightedModel(modelName: String): String {
+        val highlightedName = AICommitsStyles.ACTIVE_MODEL_NAME.wrapWithHtml(modelName)
+        return message("action.tooltip", highlightedName)
     }
 
     override fun actionPerformed(e: AnActionEvent) {

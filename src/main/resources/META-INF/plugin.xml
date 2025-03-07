@@ -73,6 +73,7 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+
         <projectConfigurable
                 parentId="tools"
                 instance="com.github.blarc.ai.commits.intellij.plugin.settings.AppSettingsConfigurable"
@@ -85,6 +86,10 @@
                 instance="com.github.blarc.ai.commits.intellij.plugin.settings.ExclusionsConfigurable"
                 id="com.github.blarc.ai.commits.intellij.plugin.settings.ExclusionsConfigurable"
                 key="settings.exclusions.group.title"
+        />
+
+        <colorSettingsPage
+                implementation="com.github.blarc.ai.commits.intellij.plugin.ui.styles.AICommitsStylesSettingsPage"
         />
 
         <notificationGroup
