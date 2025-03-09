@@ -55,9 +55,11 @@ data class StyleDefinition(val id: String, val displayNameKey: String, val defau
     /**
      * The TextAttributesKey used by IntelliJ's color settings system.
      */
-    val textAttributesKey: TextAttributesKey by lazy {
-        TextAttributesKey.createTextAttributesKey("AICommits.$id").also { key ->
-            EditorColorsManager.getInstance().globalScheme.setAttributes(key, defaultAttributes)
+    val textAttributesKey: TextAttributesKey = TextAttributesKey.createTextAttributesKey("AICommits.$id")
+    init {
+        val scheme = EditorColorsManager.getInstance().globalScheme
+        if (scheme.getAttributes(textAttributesKey) == null) {
+            scheme.setAttributes(textAttributesKey, defaultAttributes)
         }
     }
 
