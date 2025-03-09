@@ -46,16 +46,12 @@ object AICommitsStyles {
 
 /**
  * Represents a customizable color/style definition in the IDE.
- * 
+ *
  * @param id Unique identifier for Style definition (used in settings storage)
  * @param displayNameKey Resource bundle key for the display name in settings
  * @param defaultAttributes Default text attributes (colors, font style)
  */
-data class StyleDefinition(
-    val id: String,
-    val displayNameKey: String,
-    val defaultAttributes: TextAttributes
-) {
+data class StyleDefinition(val id: String, val displayNameKey: String, val defaultAttributes: TextAttributes) {
     /**
      * The TextAttributesKey used by IntelliJ's color settings system.
      */
@@ -70,10 +66,8 @@ data class StyleDefinition(
      * respecting any user customizations from the IDE settings.
      * Falls back to default attributes if not customized.
      */
-    private fun getCurrentAttributes(): TextAttributes {
-        return EditorColorsManager.getInstance().globalScheme
-            .getAttributes(textAttributesKey) ?: defaultAttributes
-    }
+    private fun getCurrentAttributes(): TextAttributes = EditorColorsManager.getInstance().globalScheme
+        .getAttributes(textAttributesKey) ?: defaultAttributes
 
     /**
      * Generates HTML/CSS style string for Style definition.
@@ -82,11 +76,11 @@ data class StyleDefinition(
     private fun getHtmlStyle(): String {
         val attributes = getCurrentAttributes()
         return buildList {
-            attributes.foregroundColor?.let { 
-                add("color:${ColorUtil.toHtmlColor(it)}") 
+            attributes.foregroundColor?.let {
+                add("color:${ColorUtil.toHtmlColor(it)}")
             }
-            attributes.backgroundColor?.let { 
-                add("background-color:${ColorUtil.toHtmlColor(it)}") 
+            attributes.backgroundColor?.let {
+                add("background-color:${ColorUtil.toHtmlColor(it)}")
             }
             if (attributes.fontType and Font.BOLD != 0) add("font-weight:bold")
             if (attributes.fontType and Font.ITALIC != 0) add("font-style:italic")

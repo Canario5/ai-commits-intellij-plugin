@@ -19,14 +19,12 @@ class AICommitsStylesSettingsPage : ColorSettingsPage {
     // Purpose: AttributeDescriptors() defines text styling (foreground color, background, bold, italic... etc.)
     // Details: Generates style descriptors for IDE color settings from AICommitsStyles.
     // !NOTE: It shows defaults Jetbrains fields, so some unwanted attributes are displayed.
-    override fun getAttributeDescriptors(): Array<AttributesDescriptor> {
-        return AICommitsStyles.getAllDefinitions().map { styleDefinition ->
-            AttributesDescriptor(
-                message(styleDefinition.displayNameKey),
-                styleDefinition.textAttributesKey
-            )
-        }.toTypedArray()
-    }
+    override fun getAttributeDescriptors() = AICommitsStyles.getAllDefinitions().map { styleDefinition ->
+        AttributesDescriptor(
+            message(styleDefinition.displayNameKey),
+            styleDefinition.textAttributesKey
+        )
+    }.toTypedArray()
 
     // Purpose: Sets the name shown in the settings in Editor -> Color Schemes -> "name of this settings page"
     override fun getDisplayName() = message("group.styles")
@@ -39,7 +37,7 @@ class AICommitsStylesSettingsPage : ColorSettingsPage {
     override fun getHighlighter() = PlainSyntaxHighlighter()
 
     //? NOTE: Potential improvement - Display users' stored LLM names.
-    // NOTE: IDE Indentation is included to the multiline string, so trimMargin with | to keep formatting.
+    // NOTE: IDE Indentation is included to the multiline string, so trimMargin used with | to keep formatting.
     override fun getDemoText() =
         """
             |${message("styles.demo.styling-limitations")}
@@ -56,7 +54,7 @@ class AICommitsStylesSettingsPage : ColorSettingsPage {
         """.trimMargin()
 
     // Purpose: Maps XML-like tags in the demo text to text attribute keys
-    // Details: Tells IntelliJ: "When is a text between <active-model-name> tags, apply the ACTIVE_MODEL_NAME text attributes"
+    // Details: "When is a text between <active-model-name> tags, apply the ACTIVE_MODEL_NAME text attributes"
     override fun getAdditionalHighlightingTagToDescriptorMap() = buildMap {
         AICommitsStyles.getAllDefinitions().forEach { styleDefinition ->
             put(styleDefinition.id, styleDefinition.textAttributesKey)
