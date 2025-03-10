@@ -12,6 +12,7 @@ import com.github.blarc.ai.commits.intellij.plugin.settings.clients.huggingface.
 import com.github.blarc.ai.commits.intellij.plugin.settings.clients.mistral.MistralAIClientConfiguration
 import com.github.blarc.ai.commits.intellij.plugin.settings.clients.ollama.OllamaClientConfiguration
 import com.github.blarc.ai.commits.intellij.plugin.settings.clients.openAi.OpenAiClientConfiguration
+import com.github.blarc.ai.commits.intellij.plugin.settings.clients.openrouter.OpenrouterClientConfiguration
 import com.github.blarc.ai.commits.intellij.plugin.settings.clients.qianfan.QianfanClientConfiguration
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.openapi.ui.DialogWrapper
@@ -157,7 +158,8 @@ class LLMClientTable {
                     AzureOpenAiClientConfiguration(),
                     HuggingFaceClientConfiguration(),
                     GitHubModelsClientConfiguration(),
-                    MistralAIClientConfiguration()
+                    MistralAIClientConfiguration(),
+                    OpenrouterClientConfiguration()
                 ).sortedBy { it.getClientName() }
             } else {
                 listOf(newLLMClientConfiguration)

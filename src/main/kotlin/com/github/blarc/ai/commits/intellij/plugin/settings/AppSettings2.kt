@@ -15,6 +15,7 @@ import com.github.blarc.ai.commits.intellij.plugin.settings.clients.mistral.Mist
 import com.github.blarc.ai.commits.intellij.plugin.settings.clients.ollama.OllamaClientConfiguration
 import com.github.blarc.ai.commits.intellij.plugin.settings.clients.openAi.OpenAiClientConfiguration
 import com.github.blarc.ai.commits.intellij.plugin.settings.clients.openAi.OpenAiClientSharedState
+import com.github.blarc.ai.commits.intellij.plugin.settings.clients.openrouter.OpenrouterClientConfiguration
 import com.github.blarc.ai.commits.intellij.plugin.settings.clients.qianfan.QianfanClientConfiguration
 import com.github.blarc.ai.commits.intellij.plugin.settings.prompts.DefaultPrompts
 import com.intellij.credentialStore.CredentialAttributes
@@ -65,7 +66,8 @@ class AppSettings2 : PersistentStateComponent<AppSettings2> {
             AzureOpenAiClientConfiguration::class,
             HuggingFaceClientConfiguration::class,
             GitHubModelsClientConfiguration::class,
-            MistralAIClientConfiguration::class
+            MistralAIClientConfiguration::class,
+            OpenrouterClientConfiguration::class
         ],
         style = XCollection.Style.v2
     )
